@@ -109,6 +109,6 @@ temp/
 
 .DS_STORE
 
-config/db.js
+db.js
 
 # End of https://www.gitignore.io/api/node
