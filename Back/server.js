@@ -4,8 +4,8 @@ const mongodb = require('mongodb').MongoClient;
 const cors = require('cors');
 
 const server = express();
-const corsOptions = require("./config/cors.js");
-const db = require("./config/db.js");
+const corsOptions = require("./config/server-config/cors.js");
+const db = require("./config/server-config/db.js");
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(bodyParser.json());
 
@@ -18,7 +18,7 @@ mongodb.connect(db.url, function(err, client){
   }
   	const database = client.db("example");
   	
-  	require("./routes")(server, database);
+  	require("./routes/routes.js")(server, database);
 });
 
 
