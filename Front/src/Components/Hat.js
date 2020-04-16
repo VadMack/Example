@@ -21,12 +21,12 @@ class Hat extends Component {
 
                                 <Dropdown.Menu className="button-style">
                                     <Dropdown.Item href="/RussianMenu">Русский язык</Dropdown.Item>
-                                    <Dropdown.Item href="#/action-2">Информатика</Dropdown.Item>
+                                    <Dropdown.Item href="/Variants">Информатика</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
                         </Nav>
                         <Nav>
-                            <Nav.Link  href={"/"}> SmartExam </Nav.Link>
+                            <Nav.Link href={"/"}> SmartExam </Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
