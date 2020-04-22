@@ -111,5 +111,7 @@ temp/
 
 db.js
 
+resources/
+
 
 # End of https://www.gitignore.io/api/node

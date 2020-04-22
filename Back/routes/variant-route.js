@@ -1,32 +1,7 @@
 module.exports = function(server, database){
 
-	 function getVariant(variant, exercisesCollection){
-		return new Promise(async (resolve, reject)=>{
-			let response = [];
-			for (var i = 0; i < variant.exercisesIDs.length; i++) {
-				await getExercise(parseInt(variant.exercisesIDs[i]), exercisesCollection).then(
-					resolve=>{
-						response[i] = resolve;
-					},
-					error=>{
-						console.log(error);
-					}
-				)
-			}
-			resolve(response);
-		});
-	}
+	const varModule = require('../modules/variant-module');
 
-	function getExercise(id, exercisesCollection){
-		return new Promise((resolve, reject)=>{
-			exercisesCollection.findOne({"_id":id}, (err, result)=>{
-				if(err){
-					reject(err);
-				}
-				resolve(result);
-			});
-		});
-	}
 
 	server.get("/:subject/variant.getCount/", (req, res)=>{
 		let parameter = "variants."+req.params.subject;
@@ -49,8 +24,7 @@ module.exports = function(server, database){
 				if(err){
 					throw err;
 				}
-					console.log(variant.exercisesIDs);
-					getVariant(variant, exercisesCollection).then(
+					varModule.getVariant(variant, exercisesCollection).then(
 							resolve=>{
 								res.json(resolve);
 							},
