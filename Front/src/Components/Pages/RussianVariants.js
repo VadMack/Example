@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import ButtonBar from "./ButtonBar"
+import ButtonBar from "../Elements/ButtonBar"
 
 
 class RussianVariants extends Component {

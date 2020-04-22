@@ -1,6 +1,6 @@
-import React, {Component} from "react";
+import React from "react";
 import {Button} from "react-bootstrap";
-const config = require("../config.js");
+const config = require("../../config.js");
 
 class ButtonBar extends React.Component {
 
@@ -9,13 +9,11 @@ class ButtonBar extends React.Component {
         this.state = {
             error: null,
             isLoaded: false,
-            count: 0
         };
     }
 
     componentDidMount() {
         let sbj = this.props.subject;
-        let type = this.props.type;
         fetch(config.ip + sbj + "/variant.getCount/")
             .then(res => res.json())
             .then(
@@ -37,7 +35,7 @@ class ButtonBar extends React.Component {
     }
 
     render() {
-        const {error, isLoaded, count} = this.state;
+        const {error, isLoaded} = this.state;
         if (error) {
             return <div>Ошибка: {error.message}</div>;
         } else if (!isLoaded) {
@@ -51,7 +49,7 @@ class ButtonBar extends React.Component {
 
     generate(numOfButtons) {
 
-        if (this.props.isLimited === "1") {
+        if (this.props.isLimited === "1" && numOfButtons > 10) {
             numOfButtons = 10;
         }
 
@@ -60,7 +58,7 @@ class ButtonBar extends React.Component {
         let counter = 1;
         for (let i = 0; i < numOfButtons; i++) {
             buttons[i] = (
-                <Button href={"/RussianMenu/" + counter} variant="dark" className="button-style3"> {counter++} </Button>
+                <Button href={"/variants/" + this.props.subject + "/" + counter} variant="dark" className="button-style3"> {counter++} </Button>
             );
         }
 

@@ -3,14 +3,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from 'react-bootstrap/Navbar'
 import {Dropdown} from "react-bootstrap";
 import {Nav} from "react-bootstrap";
-import "./Styles/styles.css"
+import "../Styles/styles.css"
 
 
 class Hat extends Component {
     render() {
         return (
             <div>
-                <Navbar bg="dark" variant="dark">
+                <Navbar bg="dark" variant="dark" style={{height:'7vh'}}>
                     <Navbar.Toggle/>
                     <Navbar.Collapse>
                         <Nav className="mr-auto">
@@ -20,8 +20,8 @@ class Hat extends Component {
                                 </Dropdown.Toggle>
 
                                 <Dropdown.Menu className="button-style">
-                                    <Dropdown.Item href="/RussianMenu">Русский язык</Dropdown.Item>
-                                    <Dropdown.Item href="/Variants">Информатика</Dropdown.Item>
+                                    <Dropdown.Item href="/Menu">Русский язык</Dropdown.Item>
+                                    <Dropdown.Item href="/variants">Информатика</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
                         </Nav>
