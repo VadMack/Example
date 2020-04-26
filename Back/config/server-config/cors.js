@@ -1,4 +1,4 @@
 module.exports = {
-	origin:"*",
-	optionsSuccessStatus: 200
+    origin: "*",
+    optionsSuccessStatus: 200
 };

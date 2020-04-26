@@ -1,4 +1,4 @@
 const variantRoute = require("./variant-route.js");
-module.exports = function(server, database){
-	variantRoute(server, database);
+module.exports = function (server, database) {
+    variantRoute(server, database);						//роуты для запросов по вариантам
 };
