@@ -23,8 +23,13 @@
     width: 40px;
     height: 40px;
     background-color: #ffff00;
+}
 
-
+.button-style4 {
+    color: #ffff00;
+    border-radius: 2px;
+    /*margin-top: 10px;*/
+    margin: 2px;
 }
 
 .font-oswald {

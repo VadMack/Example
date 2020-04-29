@@ -3,14 +3,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from 'react-bootstrap/Navbar'
 import {Dropdown} from "react-bootstrap";
 import {Nav} from "react-bootstrap";
-import "../Styles/styles.css"
+import logoImage from '../Images/logoname.png'
+import "../Styles/styles.css";
+
 
 
 class Hat extends Component {
     render() {
         return (
             <div>
-                <Navbar bg="dark" variant="dark" style={{height:'7vh'}}>
+                <Navbar bg="dark" variant="dark" style={{height:'7vh', maxHeight:'60px', minHeight:'40px'}}>
                     <Navbar.Toggle/>
                     <Navbar.Collapse>
                         <Nav className="mr-auto">
@@ -26,7 +28,13 @@ class Hat extends Component {
                             </Dropdown>
                         </Nav>
                         <Nav>
-                            <Nav.Link href={"/"}> SmartExam </Nav.Link>
+                            <Navbar.Brand href="/">
+                                <img
+                                    alt=""
+                                    src = {logoImage}
+                                    style={{height:'20vh', wight:'15vw', marginTop:'1vh'}}
+                                />
+                            </Navbar.Brand>
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>

@@ -14,7 +14,7 @@ class ButtonBar extends React.Component {
 
     componentDidMount() {
         let sbj = this.props.subject;
-        fetch(config.ip + sbj + "/variant.getCount/")
+        fetch(config.ip + "/" + sbj + "/variant.getCount/")
             .then(res => res.json())
             .then(
                 (result) => {
