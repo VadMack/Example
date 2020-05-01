@@ -4,15 +4,19 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "start":"node server",
     "dev": "nodemon server.js"
   },
   "author": "galex",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongodb":"x"
   },
   "devDependencies": {
     "nodemon": "^2.0.3"
-  }
+  },
+   "engines" : { "node" : "12.14.0" }
+
 }

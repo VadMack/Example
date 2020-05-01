@@ -5,6 +5,7 @@ exports.getExercise = function (id, exercisesCollection) {  //Получение
                 reject(err);
             }
             let exercise = {
+                "id": "",
                 "name": "",
                 "text": "",
                 "addText": "",
@@ -13,6 +14,7 @@ exports.getExercise = function (id, exercisesCollection) {  //Получение
                 if (result.addText) {
                     exercise.addText = result.addText;
                 }
+                exercise.id = id.toString();
                 exercise.name = result.name;
                 exercise.text = result.text;
             } else {
@@ -23,6 +25,26 @@ exports.getExercise = function (id, exercisesCollection) {  //Получение
     });
 }
 
-exports.checkAnswer = function () {                        //Проверка правильности задания
+exports.checkAnswer = function (answer, exercisesCollection) {                        //Проверка правильности задания
+  return new Promise((resolve, reject)=>{
+    exercisesCollection.findOne({"_id":parseInt(answer.id)}, (err, result)=>{
+      let resultObj = {
+        "id":answer.id,
+        "result":""
+      }
+      if (err){
+        reject(err);
+      }
+      if(result){
+        let answerText = answer.answ.toLowerCase().replace(/\s+/g, '').replace(/,/g, '.');
+        if(answerText==result.answer){
+          resultObj.result = true;
+        }else{
+          resultObj.result = false;
+        }
+      }
+      resolve(resultObj);
+    })
 
+  })
 }

@@ -1,10 +1,11 @@
 module.exports = function (server, database) {
 
     const varModule = require('../modules/variant-module');		//дополнительные функции для работы с вариантами
+    const exerciseModule = require('../modules/exercise-module');
 
 
     server.get("/:subject/variant.getCount/", (req, res) => {		//получение количества готовых вариантов по предмету
-        let parameter = "variants." + req.params.subject;
+        const parameter = "variants." + req.params.subject;
         const collection = database.collection(parameter.toString());
         collection.countDocuments({}, (err, count) => {
             if (err) {
@@ -17,7 +18,7 @@ module.exports = function (server, database) {
     server.get("/:subject/variant.getReady/:id", (req, res) => { //получение готового варианта полностью
 
         let subject = String(req.params.subject);
-        let varId = parseInt(req.params.id);
+        let varId = req.params.id;
         const varCollection = database.collection("variants." + subject);
         const exercisesCollection = database.collection("exercises." + subject);
         varCollection.findOne({"_id": varId}, (err, variant) => {
@@ -37,6 +38,20 @@ module.exports = function (server, database) {
                 res.status(404).send("variant not exist");
             }
         });
+
+    });
+
+    server.post("/:subject/variant.check", async (req, res)=>{
+      let subject = String(req.params.subject);
+      const exercisesCollection = database.collection("exercises." + subject);
+      await varModule.checkVariant(req.body, exercisesCollection).then(
+        resolve => {
+          res.json(resolve);
+        },
+        error =>{
+          console.log(error);
+        }
+      );
 
     });
 
