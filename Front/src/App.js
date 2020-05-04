@@ -9,7 +9,7 @@ import Hat from "./Components/Elements/Hat";
 import "./Components/Styles/styles.css"
 import MainPage from "./Components/Pages/MainPage";
 import Variant from "./Components/Pages/Variant"
-import RussianPage from "./Components/Pages/RussianPage";
+import SubjectBar from "./Components/Pages/SubjectBar";
 import RussianVariants from "./Components/Pages/RussianVariants";
 
 
@@ -21,9 +21,7 @@ function App() {
                 <Route exact path={"/"}>
                     <MainPage/>
                 </Route>
-                <Route path={"/Menu"}>
-                    <RussianPage/>
-                </Route>
+                <Route path={"/Menu/:sbj"} component={SubjectBar}/>
                 <Route path={"/allVariants"}>
                     <RussianVariants/>
                 </Route>

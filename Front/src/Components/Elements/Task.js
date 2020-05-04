@@ -5,12 +5,17 @@ import Button from "react-bootstrap/Button";
 
 class Task extends React.Component {
 
-    state = {
-        isOpen: false,
-        isClicked: false,
-        fieldName: null,
-        answerArr: {}
-    };
+    constructor() {
+        super();
+        this.state = {
+            isOpen: false,
+            isClicked: false,
+            fieldName: null,
+            answerArr: {}
+        };
+        this.handleChange = this.handleChange.bind(this);
+    }
+
 
     render() {
         let screenWidth = window.innerWidth;
@@ -20,8 +25,21 @@ class Task extends React.Component {
         else
             cardWidth = '96vw';
 
+        let bgColor = 'light';
+        if (this.props.isRight === 2) {
+            bgColor = 'success';
+        } else if (this.props.isRight === 0) {
+            bgColor = 'danger';
+        } else if (this.props.isRight === 1) {
+            bgColor = 'warning';
+        }
+
+
         let text = this.props.text.replace(/\\n/g, "\n");
-        let addText = this.props.addText.replace(/\\n/g, "\n");
+        let addText;
+        if (this.props.addText) {
+            addText = this.props.addText.replace(/\\n/g, "\n");
+        }
 
         let buttonHT;
 
@@ -34,44 +52,72 @@ class Task extends React.Component {
         }
         const hiddenText = this.state.isOpen && <div className="card-text" style={{textAlign: 'left'}}>{addText}</div>;
 
-        let saveStatus;
 
-        if (!this.state.isClicked) {
-            saveStatus = <Button className="font-oswald" variant='dark'
-                                 onClick={() => {
-                                     this.setState({isClicked: true});
-                                     this.props.updateData(this.props.id, this.state.answerArr[this.props.id]);
-                                 }}
-                                 style={{marginTop: '4px'}}>
-                                 Сохранить ответ
-                        </Button>
+
+
+        let downOfCard;
+
+        if (!this.props.correctAnswer) {
+            downOfCard =
+                <Form onSubmit={this.formSubmitHandler}>
+                    <Form.Label className="font-oswald"
+                                style={{
+                                    whiteSpace: 'pre-line',
+                                    textAlign: 'left',
+                                    fontSize: '20px'
+                                }}>
+                        {text}
+                    </Form.Label>
+                    {hiddenText}
+                    <div>
+                        {buttonHT}
+                    </div>
+                    <Form.Control type='text'
+                                  name={this.props.id}
+                                  placeholder="Введите ответ"
+                                  onChange={this.handleChange}
+                                  style={{marginTop: '4px'}}>
+                    </Form.Control>
+                </Form>
+        } else {
+            downOfCard =
+                <div className="font-oswald">
+                    <div style={{
+                        whiteSpace: 'pre-line',
+                        textAlign: 'left',
+                        fontSize: '20px'
+                    }}>
+                        {text}
+                    </div>
+                    {hiddenText}
+                    <div>
+                        {buttonHT}
+                    </div>
+                    <div style={{
+                        textAlign: 'center',
+                        fontSize: '25px'
+                    }}>
+                        <div>
+                            Ваш ответ: {this.props.userAnswer}
+                        </div>
+                        <div>
+                            Верный ответ: {this.props.correctAnswer}
+                        </div>
+                    </div>
+                </div>
         }
-        else{
-            saveStatus = <div>Ответ сохранен</div>
-        }
+
+
+
+
+
 
 
         return (
 
-            <Card style={{fontSize: '12px', width: cardWidth, marginTop: '1rem'}}>
+            <Card bg={bgColor} style={{fontSize: '12px', width: cardWidth, marginTop: '1rem'}}>
                 <Card.Body>
-                    <Form onSubmit={this.formSubmitHandler}>
-                        <Form.Label className="font-oswald" style={{
-                            whiteSpace: 'pre-line',
-                            textAlign: 'left',
-                            fontSize: '20px'
-                        }}> {text} </Form.Label>
-                        {hiddenText}
-                        <div>
-                            {buttonHT}
-                        </div>
-                        <Form.Control type='text'
-                                      name={this.props.id}
-                                      onChange={this.handleChange.bind(this)}
-                                      style={{marginTop: '4px'}}>
-                        </Form.Control>
-                        {saveStatus}
-                    </Form>
+                    {downOfCard}
                 </Card.Body>
             </Card>
 
@@ -94,6 +140,8 @@ class Task extends React.Component {
             fieldName: fieldName,
             answerArr: {[fieldName]: answer}
         });
+
+        this.props.updateData(this.props.id, answer);
     }
 
     formSubmitHandler = (e) => {

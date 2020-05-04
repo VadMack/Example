@@ -14,7 +14,10 @@ class ButtonBar extends React.Component {
 
     componentDidMount() {
         let sbj = this.props.subject;
-        fetch(config.ip + "/" + sbj + "/variant.getCount/")
+        let type = this.props.type;
+
+
+        fetch(config.ip + "/" + sbj + "/" + type + ".getCount")
             .then(res => res.json())
             .then(
                 (result) => {
@@ -36,10 +39,15 @@ class ButtonBar extends React.Component {
 
     render() {
         const {error, isLoaded} = this.state;
+        let textColor = "#474747";
+
+        if (this.props.type === "task"){
+            textColor = "#ffff00"
+        }
         if (error) {
-            return <div>Ошибка: {error.message}</div>;
+            return <div style={{color:textColor}}>Ошибка: {error.message}</div>;
         } else if (!isLoaded) {
-            return <div>Загрузка...</div>;
+            return <div style={{color:textColor}}>Загрузка...</div>;
         } else {
             return (
                 this.generate(this.state.count)
@@ -49,16 +57,17 @@ class ButtonBar extends React.Component {
 
     generate(numOfButtons) {
 
-        if (this.props.isLimited === "1" && numOfButtons > 10) {
+        if (this.props.isLimited && numOfButtons > 10) {
             numOfButtons = 10;
         }
 
         let buttons = [];
         let barS = [];
         let counter = 1;
+        let key = 0;
         for (let i = 0; i < numOfButtons; i++) {
             buttons[i] = (
-                <Button href={"/variants/" + this.props.subject + "/" + counter} variant="dark" className="button-style3"> {counter++} </Button>
+                <Button  key={key++} href={"/variants/" + this.props.subject + "/" + counter} variant="dark" className="button-style3"> {counter++} </Button>
             );
         }
 
@@ -74,7 +83,7 @@ class ButtonBar extends React.Component {
             for (let j = 0; j < strLength; j++) {
                 string[j] = buttons[5 * i + j];
             }
-            barS[i] = (<div>
+            barS[i] = (<div key={key++}>
                 {string}
             </div>)
         }

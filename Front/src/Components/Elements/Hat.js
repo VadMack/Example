@@ -22,8 +22,8 @@ class Hat extends Component {
                                 </Dropdown.Toggle>
 
                                 <Dropdown.Menu className="button-style">
-                                    <Dropdown.Item href="/Menu">Русский язык</Dropdown.Item>
-                                    <Dropdown.Item href="/variants">Информатика</Dropdown.Item>
+                                    <Dropdown.Item href="/Menu/rus">Русский язык</Dropdown.Item>
+                                    <Dropdown.Item href="/Menu/inf">Информатика</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
                         </Nav>
