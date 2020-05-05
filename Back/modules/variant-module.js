@@ -16,14 +16,38 @@ exports.getVariant = function (variant, exercisesCollection) { //составл�
     });
 }
 
-exports.checkVariant = function (answers, exercisesCollection) {
+exports.checkVariant = function (answers, exercisesCollection, subjectsData, subject) {
     const exerciseModule = require('./exercise-module');
     return new Promise(async (resolve, reject)=>{
-      let response = [];
+      let response = {
+        "totalPoints":0,
+        "maxPoints":0,
+        "results":[]
+      };
       for (var i = 0; i < answers.length; i++) {
-        await exerciseModule.checkAnswer(answers[i], exercisesCollection).then(
+        let type;
+        let prot;
+        await exerciseModule.getType(answers[i], exercisesCollection).then(
+          resolve=>{
+            type = resolve
+          },
+          error=>{
+            console.log(error);
+          }
+        );
+        await exerciseModule.getProt(subject, subjectsData, type).then(
+          resolve=>{
+            prot = resolve;
+            response.maxPoints += prot.points;
+          },
+          error=>{
+            console.log(error);
+          }
+        );
+        await exerciseModule.checkAnswer(answers[i], exercisesCollection, prot).then(
           resolve =>{
-            response[i] = resolve;
+            response.totalPoints += resolve.points;
+            response.results[i] = resolve;
           },
           error =>{
             console.log(error);

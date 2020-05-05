@@ -42,9 +42,11 @@ module.exports = function (server, database) {
     });
 
     server.post("/:subject/variant.check", async (req, res)=>{
+      console.log(req.body);
       let subject = String(req.params.subject);
       const exercisesCollection = database.collection("exercises." + subject);
-      await varModule.checkVariant(req.body, exercisesCollection).then(
+      const subjectsData = database.collection("subjects.data");
+      await varModule.checkVariant(req.body, exercisesCollection, subjectsData, subject).then(
         resolve => {
           res.json(resolve);
         },
