@@ -10,7 +10,7 @@ import "./Components/Styles/styles.css"
 import MainPage from "./Components/Pages/MainPage";
 import Variant from "./Components/Pages/Variant"
 import SubjectBar from "./Components/Pages/SubjectBar";
-import RussianVariants from "./Components/Pages/RussianVariants";
+import AllVariants from "./Components/Pages/AllVariants";
 
 
 function App() {
@@ -23,7 +23,7 @@ function App() {
                 </Route>
                 <Route path={"/Menu/:sbj"} component={SubjectBar}/>
                 <Route path={"/allVariants"}>
-                    <RussianVariants/>
+                    <AllVariants/>
                 </Route>
                 <Route path="/variants/:sbj/:id" component = {Variant}>
                 </Route>

@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Oswald&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Exo+2&display=swap&subset=cyrillic");
 
 
 .button-style {
@@ -36,6 +37,22 @@
     font-family: 'Oswald', sans-serif;
 }
 
+.exo2 {
+    font-family: 'Exo 2', sans-serif;
+}
+
 .carousel-style {
     height: 100%;
+}
+
+.main-block{
+    min-height: 100vh;
+    float: left;
+    background-color: #ffff00;
+}
+
+.add-block{
+    min-height: 100vh;
+    float: left;
+    background-color: #474747;
 }

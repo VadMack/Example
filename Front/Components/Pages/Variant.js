@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 import TaskList from "../Elements/TaskList"
+import ResultElement from "../Elements/ResultElement";
 
 const config = require("../../config.js");
 
@@ -13,7 +14,7 @@ class Varik extends React.Component {
             error: null,
             isLoaded: false,
             answerList: [],
-            isRight: [],
+            assessmentData: [],
             data: [],
             isClickedSB: false
         };
@@ -26,7 +27,7 @@ class Varik extends React.Component {
         let numOfTasks;
         switch (sbj) {
             case ("rus"):
-                numOfTasks = 3;
+                numOfTasks = 2;
                 break;
             case ("inf"):
                 numOfTasks = 30;
@@ -40,8 +41,8 @@ class Varik extends React.Component {
             .then(
                 (result) => {
                     let answerList = [];
-                    for (let i = 1; i <= numOfTasks; ++i) {
-                        answerList[i] = {id: String(i), answ: "не введен"};
+                    for (let i = 0; i < numOfTasks; ++i) {
+                        answerList[i] = {id: String(i+1), answ: "не введен"};
                     }
 
                     this.setState({
@@ -84,7 +85,8 @@ class Varik extends React.Component {
                                                                       .then(res => res.json())
                                                                       .then(
                                                                           (result) => {
-                                                                              this.setState({isRight: result});
+                                                                              this.setState({assessmentData: result});
+                                                                              //console.log(this.state.isRight)
                                                                           })
 
 
@@ -100,7 +102,11 @@ class Varik extends React.Component {
         } else {
             return (
                 <div align="center" style={{backgroundColor: "#474747", padding: "2px"}}>
-                    <TaskList data={this.state.data} updateData={this.updateData} isRight={this.state.isRight}/>
+                    <ResultElement isClicked={this.state.isClickedSB}
+                                   results={this.state.assessmentData.results}
+                                   totalPoints={this.state.assessmentData.totalPoints}
+                                   maxPoints={this.state.assessmentData.maxPoints}/>
+                    <TaskList data={this.state.data} updateData={this.updateData} assessmentData={this.state.assessmentData}/>
                     {submitButton}
                 </div>
 
@@ -114,8 +120,8 @@ class Varik extends React.Component {
         await this.setState(state => {
             //const answerList = state.answerList.concat({id: fieldName, answ: answer});
             const answerList = state.answerList;
-            answerList[Number(fieldName)] = {id: fieldName, answ: answer};
-            console.log(answerList);
+            answerList[Number(fieldName)-1] = {id: fieldName, answ: answer};
+
             return {
                 answerList
             };

@@ -50,7 +50,7 @@ class Task extends React.Component {
                 </Button>
             );
         }
-        const hiddenText = this.state.isOpen && <div className="card-text" style={{textAlign: 'left'}}>{addText}</div>;
+        const hiddenText = this.state.isOpen && <div className="card-text exo2" style={{textAlign: 'left', fontSize:'15px'}}>{addText}</div>;
 
 
 

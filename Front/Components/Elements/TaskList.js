@@ -7,18 +7,21 @@ class TaskList extends React.Component{
         let isRight = [];
         let correctAnswer = [];
         let userAnswer = [];
+
         let j = 1;
 
-        for (let i = 0; i < 10; i++) {
-            if (this.props.isRight[i]) {
-                isRight[this.props.isRight[i].id] = this.props.isRight[i].result;
-                correctAnswer[this.props.isRight[i].id] = this.props.isRight[i].correctAnswer;
-                userAnswer[this.props.isRight[i].id] = this.props.isRight[i].userAnswer;
+       for (let i = 0; i < 10; i++) {
+            if (this.props.assessmentData.results) {
+                if (this.props.assessmentData.results[i]) {
+                    isRight[this.props.assessmentData.results[i].id] = this.props.assessmentData.results[i].result;
+                    correctAnswer[this.props.assessmentData.results[i].id] = this.props.assessmentData.results[i].correctAnswer;
+                    userAnswer[this.props.assessmentData.results[i].id] = this.props.assessmentData.results[i].userAnswer;
+                }
             }
         }
 
 
-        const taskList = Object.keys(this.props.data, this.props.isRight).map(item =>
+        const taskList = Object.keys(this.props.data).map(item =>
             <Task
                 key={this.props.data[item].id}
                 id={this.props.data[item].id}
