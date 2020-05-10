@@ -16,7 +16,6 @@ class Task extends React.Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
-
     render() {
         let screenWidth = window.innerWidth;
         let cardWidth;
@@ -40,6 +39,7 @@ class Task extends React.Component {
         if (this.props.addText) {
             addText = this.props.addText.replace(/\\n/g, "\n");
         }
+        let numInVar = this.props.numInVar;
 
         let buttonHT;
 
@@ -50,12 +50,14 @@ class Task extends React.Component {
                 </Button>
             );
         }
-        const hiddenText = this.state.isOpen && <div className="card-text exo2" style={{textAlign: 'left', fontSize:'15px'}}>{addText}</div>;
-
-
-
+        const hiddenText = this.state.isOpen &&
+            <div className="card-text exo2" style={{textAlign: 'left', fontSize: '15px'}}>{addText}</div>;
 
         let downOfCard;
+        let formName = String(this.props.id);
+        if (this.props.numInVar){
+            formName = formName + "-" + String(numInVar);
+        }
 
         if (!this.props.correctAnswer) {
             downOfCard =
@@ -68,12 +70,16 @@ class Task extends React.Component {
                                 }}>
                         {text}
                     </Form.Label>
-                    {hiddenText}
+                    <div style={{
+                        whiteSpace: 'pre-line'
+                    }}>
+                        {hiddenText}
+                    </div>
                     <div>
                         {buttonHT}
                     </div>
                     <Form.Control type='text'
-                                  name={this.props.id}
+                                  name={formName}
                                   placeholder="Введите ответ"
                                   onChange={this.handleChange}
                                   style={{marginTop: '4px'}}>
@@ -89,7 +95,11 @@ class Task extends React.Component {
                     }}>
                         {text}
                     </div>
-                    {hiddenText}
+                    <div style={{
+                        whiteSpace: 'pre-line'
+                    }}>
+                        {hiddenText}
+                    </div>
                     <div>
                         {buttonHT}
                     </div>
@@ -106,11 +116,6 @@ class Task extends React.Component {
                     </div>
                 </div>
         }
-
-
-
-
-
 
 
         return (
@@ -140,8 +145,7 @@ class Task extends React.Component {
             fieldName: fieldName,
             answerArr: {[fieldName]: answer}
         });
-
-        this.props.updateData(this.props.id, answer);
+        this.props.updateData(fieldName, answer);
     }
 
     formSubmitHandler = (e) => {

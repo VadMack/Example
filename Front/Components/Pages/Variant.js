@@ -24,25 +24,14 @@ class Varik extends React.Component {
     componentDidMount() {
         let id = this.props.match.params.id;
         let sbj = this.props.match.params.sbj;
-        let numOfTasks;
-        switch (sbj) {
-            case ("rus"):
-                numOfTasks = 2;
-                break;
-            case ("inf"):
-                numOfTasks = 30;
-                break;
-            default:
-                numOfTasks = 1;
-        }
 
         fetch(config.ip + "/" + sbj + "/variant.getReady/" + id)
             .then(res => res.json())
             .then(
                 (result) => {
                     let answerList = [];
-                    for (let i = 0; i < numOfTasks; ++i) {
-                        answerList[i] = {id: String(i+1), answ: "не введен"};
+                    for (let i = 0; i < result.length; ++i) {
+                        answerList[i] = {id: result[i].id, answ: "не введен"};
                     }
 
                     this.setState({
@@ -106,7 +95,10 @@ class Varik extends React.Component {
                                    results={this.state.assessmentData.results}
                                    totalPoints={this.state.assessmentData.totalPoints}
                                    maxPoints={this.state.assessmentData.maxPoints}/>
-                    <TaskList data={this.state.data} updateData={this.updateData} assessmentData={this.state.assessmentData}/>
+                    <TaskList data={this.state.data}
+                              updateData={this.updateData}
+                              assessmentData={this.state.assessmentData}
+                              />
                     {submitButton}
                 </div>
 
@@ -116,11 +108,25 @@ class Varik extends React.Component {
 
 
     updateData = async (fieldName, answer) => {
+        let id = "";
+        let numInVar = "";
+        let i = 0;
+
+            while (fieldName[i] !== "-"){
+                id = id + fieldName[i];
+                i++;
+            }
+            if (fieldName[i] === "-"){
+                i++;
+            }
+            while (i < fieldName.length){
+                numInVar = numInVar + fieldName[i];
+                i++;
+            }
 
         await this.setState(state => {
-            //const answerList = state.answerList.concat({id: fieldName, answ: answer});
             const answerList = state.answerList;
-            answerList[Number(fieldName)-1] = {id: fieldName, answ: answer};
+            answerList[Number(numInVar)-1] = {id: id, answ: answer};
 
             return {
                 answerList
@@ -128,6 +134,8 @@ class Varik extends React.Component {
         });
 
     };
+
+
 
 
 }

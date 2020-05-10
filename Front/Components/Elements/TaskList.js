@@ -10,16 +10,15 @@ class TaskList extends React.Component{
 
         let j = 1;
 
-       for (let i = 0; i < 10; i++) {
+       for (let i = 0; i < 50; i++) {
             if (this.props.assessmentData.results) {
                 if (this.props.assessmentData.results[i]) {
-                    isRight[this.props.assessmentData.results[i].id] = this.props.assessmentData.results[i].result;
-                    correctAnswer[this.props.assessmentData.results[i].id] = this.props.assessmentData.results[i].correctAnswer;
-                    userAnswer[this.props.assessmentData.results[i].id] = this.props.assessmentData.results[i].userAnswer;
+                    isRight[this.props.data[i].numInVar] = this.props.assessmentData.results[i].result;
+                    correctAnswer[this.props.data[i].numInVar] = this.props.assessmentData.results[i].correctAnswer;
+                    userAnswer[this.props.data[i].numInVar] = this.props.assessmentData.results[i].userAnswer;
                 }
             }
         }
-
 
         const taskList = Object.keys(this.props.data).map(item =>
             <Task
@@ -28,11 +27,13 @@ class TaskList extends React.Component{
                 name={this.props.data[item].name}
                 text={this.props.data[item].text}
                 addText={this.props.data[item].addText}
+                numInVar={this.props.data[item].numInVar}
                 isRight={isRight[j]}
                 userAnswer={userAnswer[j]}
                 correctAnswer={correctAnswer[j++]}
                 updateData={this.props.updateData}
-            />);
+            />
+            );
 
         return(
             <div>

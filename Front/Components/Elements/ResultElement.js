@@ -16,7 +16,7 @@ class resultElement extends React.Component {
         if (this.props.results) {
             resultList = this.props.results.map((result) =>
 
-                <div>
+                <div key={result.id}>
                     {result.id}) {result.points}
                 </div>
             );

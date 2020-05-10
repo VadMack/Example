@@ -21,7 +21,7 @@ class SubjectBar extends Component {
                 </div>
                 <div style={{backgroundColor: "#474747", fontSize: "30px"}}>
                     <div style={{color: "#ffff00"}}>
-                        SmartExam алгоритм
+                        Марафон
                     </div>
                     <div style={{color: "#ffff00", fontSize: "15px"}}>
                         Выберите задание, которое хотите отработать

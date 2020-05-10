@@ -65,9 +65,18 @@ class ButtonBar extends React.Component {
         let barS = [];
         let counter = 1;
         let key = 0;
+        let url;
+
+        if (this.props.type === "variant"){
+            url = "/variants/" + this.props.subject + "/";
+        }
+        else {
+            url = "/marathon/" + this.props.subject + "/";
+        }
+
         for (let i = 0; i < numOfButtons; i++) {
             buttons[i] = (
-                <Button  key={key++} href={"/variants/" + this.props.subject + "/" + counter} variant="dark" className="button-style3"> {counter++} </Button>
+                <Button  key={key++} href={url + counter} variant="dark" className="button-style3"> {counter++} </Button>
             );
         }
 

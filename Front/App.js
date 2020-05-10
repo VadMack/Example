@@ -2,8 +2,7 @@ import React from "react";
 import {
     BrowserRouter as Router,
     Switch,
-    Route,
-    Link
+    Route
 } from "react-router-dom";
 import Hat from "./Components/Elements/Hat";
 import "./Components/Styles/styles.css"
@@ -11,6 +10,7 @@ import MainPage from "./Components/Pages/MainPage";
 import Variant from "./Components/Pages/Variant"
 import SubjectBar from "./Components/Pages/SubjectBar";
 import AllVariants from "./Components/Pages/AllVariants";
+import Marathon from "./Components/Pages/Marathon"
 
 
 function App() {
@@ -25,8 +25,8 @@ function App() {
                 <Route path={"/allVariants"}>
                     <AllVariants/>
                 </Route>
-                <Route path="/variants/:sbj/:id" component = {Variant}>
-                </Route>
+                <Route path="/variants/:sbj/:id" component = {Variant}/>
+                <Route path="/marathon/:sbj/:prototype" component = {Marathon}/>
             </Switch>
         </Router>
 
