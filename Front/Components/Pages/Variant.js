@@ -6,7 +6,7 @@ import ResultElement from "../Elements/ResultElement";
 const config = require("../../config.js");
 
 
-class Varik extends React.Component {
+class Variant extends React.Component {
 
     constructor(props) {
         super(props);
@@ -31,7 +31,7 @@ class Varik extends React.Component {
                 (result) => {
                     let answerList = [];
                     for (let i = 0; i < result.length; ++i) {
-                        answerList[i] = {id: result[i].id, answ: "не введен"};
+                        answerList[i] = {id: result[i].id, answ: ""};
                     }
 
                     this.setState({
@@ -81,8 +81,8 @@ class Varik extends React.Component {
 
                                                               }}
                                                               style={{marginTop: "1vh"}}>
-                                                        Отправить на проверку
-                                                        </Button>;
+            Отправить на проверку
+        </Button>;
 
         if (error) {
             return <div>Ошибка: {error.message}</div>;
@@ -94,11 +94,12 @@ class Varik extends React.Component {
                     <ResultElement isClicked={this.state.isClickedSB}
                                    results={this.state.assessmentData.results}
                                    totalPoints={this.state.assessmentData.totalPoints}
-                                   maxPoints={this.state.assessmentData.maxPoints}/>
+                                   maxPoints={this.state.assessmentData.maxPoints}
+                                   testResult={this.state.assessmentData.testResult}/>
                     <TaskList data={this.state.data}
                               updateData={this.updateData}
                               assessmentData={this.state.assessmentData}
-                              />
+                    />
                     {submitButton}
                 </div>
 
@@ -112,21 +113,21 @@ class Varik extends React.Component {
         let numInVar = "";
         let i = 0;
 
-            while (fieldName[i] !== "-"){
-                id = id + fieldName[i];
-                i++;
-            }
-            if (fieldName[i] === "-"){
-                i++;
-            }
-            while (i < fieldName.length){
-                numInVar = numInVar + fieldName[i];
-                i++;
-            }
+        while (fieldName[i] !== "-") {
+            id = id + fieldName[i];
+            i++;
+        }
+        if (fieldName[i] === "-") {
+            i++;
+        }
+        while (i < fieldName.length) {
+            numInVar = numInVar + fieldName[i];
+            i++;
+        }
 
         await this.setState(state => {
             const answerList = state.answerList;
-            answerList[Number(numInVar)-1] = {id: id, answ: answer};
+            answerList[Number(numInVar) - 1] = {id: id, answ: answer};
 
             return {
                 answerList
@@ -136,8 +137,6 @@ class Varik extends React.Component {
     };
 
 
-
-
 }
 
-export default Varik
+export default Variant

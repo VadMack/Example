@@ -10,8 +10,6 @@ class Task extends React.Component {
         this.state = {
             isOpen: false,
             isClicked: false,
-            fieldName: null,
-            answerArr: {}
         };
         this.handleChange = this.handleChange.bind(this);
     }
@@ -55,7 +53,7 @@ class Task extends React.Component {
 
         let downOfCard;
         let formName = String(this.props.id);
-        if (this.props.numInVar){
+        if (this.props.numInVar) {
             formName = formName + "-" + String(numInVar);
         }
 
@@ -122,6 +120,9 @@ class Task extends React.Component {
 
             <Card bg={bgColor} style={{fontSize: '12px', width: cardWidth, marginTop: '1rem'}}>
                 <Card.Body>
+                    <div className="font-oswald" style={{fontSize: '20px'}}>
+                        {this.props.numInVar}
+                    </div>
                     {downOfCard}
                 </Card.Body>
             </Card>
@@ -141,10 +142,6 @@ class Task extends React.Component {
 
         let fieldName = event.target.name;
         let answer = event.target.value;
-        this.setState({
-            fieldName: fieldName,
-            answerArr: {[fieldName]: answer}
-        });
         this.props.updateData(fieldName, answer);
     }
 

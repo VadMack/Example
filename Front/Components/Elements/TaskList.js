@@ -24,7 +24,6 @@ class TaskList extends React.Component{
             <Task
                 key={this.props.data[item].id}
                 id={this.props.data[item].id}
-                name={this.props.data[item].name}
                 text={this.props.data[item].text}
                 addText={this.props.data[item].addText}
                 numInVar={this.props.data[item].numInVar}

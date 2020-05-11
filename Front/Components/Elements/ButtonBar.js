@@ -65,8 +65,8 @@ class ButtonBar extends React.Component {
         let barS = [];
         let counter = 1;
         let key = 0;
-        let url;
 
+        let url;
         if (this.props.type === "variant"){
             url = "/variants/" + this.props.subject + "/";
         }
