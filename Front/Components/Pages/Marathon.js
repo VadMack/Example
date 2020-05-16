@@ -37,6 +37,10 @@ class Marathon extends React.Component {
                         idUsed: {
                             usedArray: result.usedArray
                         },
+                        newAnswer: {
+                            id: result.exercise.id,
+                            answ: ""
+                        },
                         isLoaded: true,
                     });
 
@@ -86,7 +90,6 @@ class Marathon extends React.Component {
                                 if (!this.state.isClicked) {
                                     const array = [];
                                     array[0] = this.state.newAnswer;
-                                    console.log(array);
                                     fetch(config.ip + "/" + sbj + "/variant.check/",
                                         {
                                             method: 'POST',

@@ -75,7 +75,6 @@ class Variant extends React.Component {
                                                                       .then(
                                                                           (result) => {
                                                                               this.setState({assessmentData: result});
-                                                                              //console.log(this.state.isRight)
                                                                           })
 
 
