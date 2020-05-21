@@ -98,6 +98,7 @@ class Variant extends React.Component {
                     <TaskList data={this.state.data}
                               updateData={this.updateData}
                               assessmentData={this.state.assessmentData}
+                              sbj={sbj}
                     />
                     {submitButton}
                 </div>

@@ -17,6 +17,7 @@ class FillingDatabase extends React.Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
+
     render() {
 
         let screenWidth = window.innerWidth;
@@ -44,55 +45,51 @@ class FillingDatabase extends React.Component {
 
         for (let i = 0; i < numOfTasks; i++) {
             taskList[i] = {
-                type: "",
-                text: "",
-                addText: "",
-                answer: ""
 
             }
         }
 
+
         let counter = 0;
 
         taskList = taskList.map((item) =>
-            <Card key={counter} style={{fontSize: '12px', width: cardWidth, marginTop: '1rem'}}>
+            <Card key={counter} className="font-oswald"
+                  style={{fontSize: '20px', width: cardWidth, marginTop: '1rem'}}>
                 <Form>
-                    <Form.Label className="font-oswald"
-                                style={{
-                                    fontSize: '20px'
-                                }}>
+                    <div>
+                        {++counter}
+                    </div>
+                    <Form.Label>
                         type
                     </Form.Label>
-                    <Form.Control name={++counter + "-type"}
+                    <Form.Control name={counter + "-type"}
                                   onChange={this.handleChange}/>
-                    <Form.Label className="font-oswald"
-                                style={{
-                                    fontSize: '20px'
-                                }}>
+                    <Form.Label>
                         text
                     </Form.Label>
                     <Form.Control name={counter + "-text"}
                                   onChange={this.handleChange}/>
-                    <Form.Label className="font-oswald"
-                                style={{
-                                    fontSize: '20px'
-                                }}>
+                    <Form.Label>
                         addText
                     </Form.Label>
                     <Form.Control name={counter + "-addText"}
                                   onChange={this.handleChange}/>
-                    <Form.Label className="font-oswald"
-                                style={{
-                                    fontSize: '20px'
-                                }}>
+                    <Form.Label>
                         answer
                     </Form.Label>
                     <Form.Control name={counter + "-answer"}
                                   onChange={this.handleChange}/>
+                    <Form.Label>
+                        withPic
+                    </Form.Label>
+                    <Form.Check name={counter + "-withPic"}
+                                size=""
+                                label="Нужна ли картинка"
+                                onChange={this.handleChange}
+                                style={{fontSize: "15px"}}/>
                 </Form>
             </Card>
         );
-
 
 
         let submitButton = !this.state.isClickedSB && <Button className="font-oswald"
@@ -110,11 +107,7 @@ class FillingDatabase extends React.Component {
                                                                           },
                                                                           body: JSON.stringify(this.state.taskList)
                                                                       })
-                                                                      .then(res => res.json())
-                                                                      .then(
-                                                                          (result) => {
-                                                                              this.setState({assessmentData: result});
-                                                                          })
+
 
 
                                                               }}
@@ -162,22 +155,32 @@ class FillingDatabase extends React.Component {
 
             switch (fieldName) {
                 case "type":
-                    taskList[number-1] = {...state.taskList[number-1], type: value};
+                    taskList[number - 1] = {...state.taskList[number - 1], type: value};
                     break;
                 case "text":
-                    taskList[number-1] = {...state.taskList[number-1], text: value};
+                    taskList[number - 1] = {...state.taskList[number - 1], text: value};
                     break;
                 case "addText":
-                    taskList[number-1] = {...state.taskList[number-1], addText: value};
+                    taskList[number - 1] = {...state.taskList[number - 1], addText: value};
                     break;
                 case "answer":
-                    taskList[number-1] = {...state.taskList[number-1], answer: value};
+                    taskList[number - 1] = {...state.taskList[number - 1], answer: value};
+                    break;
+                case "withPic":
+                    if (taskList[number - 1]) {
+                        if (state.taskList[number - 1].withPic !== true)
+                            taskList[number - 1] = {...state.taskList[number - 1], withPic: true};
+                        else
+                            taskList[number - 1] = {...state.taskList[number - 1], withPic: false};
+                    } else
+                        taskList[number - 1] = {...state.taskList[number - 1], withPic: true};
                     break;
                 default:
                     console.log("Error");
 
 
             }
+            console.log(taskList);
             return {
                 taskList
             };

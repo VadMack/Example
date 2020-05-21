@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 import "../Styles/styles.css"
 import {Carousel} from "react-bootstrap";
 import image from '../Images/blur6.png'

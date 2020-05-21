@@ -3,6 +3,8 @@ import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 
+const config = require("../../config.js");
+
 class Task extends React.Component {
 
     constructor() {
@@ -17,10 +19,15 @@ class Task extends React.Component {
     render() {
         let screenWidth = window.innerWidth;
         let cardWidth;
-        if (screenWidth > 500)
+        let imgWidth;
+        if (screenWidth > 500) {
             cardWidth = '46rem';
-        else
+            imgWidth = '40rem';
+        }
+        else {
             cardWidth = '96vw';
+            imgWidth = '78vw';
+        }
 
         let bgColor = 'light';
         if (this.props.isRight === 2) {
@@ -48,6 +55,13 @@ class Task extends React.Component {
                 </Button>
             );
         }
+
+
+        const image = this.props.withPic &&
+            <img src={config.imageIP + "/media/" + this.props.sbj + "/pic/" + this.props.id + ".jpg"}
+                 alt="Error"
+            style={{maxWidth: imgWidth}}/>;
+
         const hiddenText = this.state.isOpen &&
             <div className="card-text exo2" style={{textAlign: 'left', fontSize: '15px'}}>{addText}</div>;
 
@@ -68,6 +82,7 @@ class Task extends React.Component {
                                 }}>
                         {text}
                     </Form.Label>
+                    {image}
                     <div style={{
                         whiteSpace: 'pre-line'
                     }}>

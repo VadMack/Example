@@ -27,6 +27,8 @@ class TaskList extends React.Component{
                 text={this.props.data[item].text}
                 addText={this.props.data[item].addText}
                 numInVar={this.props.data[item].numInVar}
+                withPic={this.props.data[item].withPic}
+                sbj={this.props.sbj}
                 isRight={isRight[j]}
                 userAnswer={userAnswer[j]}
                 correctAnswer={correctAnswer[j++]}
