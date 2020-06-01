@@ -3,9 +3,13 @@ exports.getCount = function (database, params) {
     const collection = database.collection("exercises." + params.subject);
     collection.countDocuments({ type: parseInt(params.type) }, (err, count) => {
       if (err) {
-        reject(err);
+        return reject(err);
       }
-      resolve({ count: count });
+      if (count) {
+        resolve({ count: count });
+      } else {
+        return reject(404);
+      }
     });
   });
 };
@@ -17,15 +21,19 @@ exports.getCountAll = function (database, params) {
       if (err) {
         reject(err);
       }
-      resolve({ count: subject.numOfExercises });
+      if (subject) {
+        resolve({ count: subject.numOfExercises });
+      } else {
+        return reject(404);
+      }
     });
   });
 };
 
 exports.getMarathon = function (database, req) {
   return new Promise((resolve, reject) => {
-    const parameter = "exercises." + req.params.subject;
-    const collection = database.collection(parameter.toString());
+    const subjectsData = database.collection("subjects.data");
+    const collection = database.collection("exercises." + req.params.subject);
     const type = parseInt(req.params.type);
     response = {
       exercise: "",
@@ -43,7 +51,7 @@ exports.getMarathon = function (database, req) {
           while (randId == -1) {
             randId = getRandId(array, req.body.usedArray);
           }
-          getExercise(randId, collection).then(
+          getExercise(randId, collection, subjectsData).then(
             (result) => {
               usedArray = req.body.usedArray;
               usedArray[usedArray.length] = randId;
@@ -99,6 +107,7 @@ function getExercise(id, exercisesCollection) {
         text: "",
         addText: "",
         numInVar: "",
+        withPic: "",
       };
       if (err) {
         return reject(500);
@@ -109,6 +118,7 @@ function getExercise(id, exercisesCollection) {
         }
         exercise.id = id.toString();
         exercise.text = result.text;
+        exercise.withPic = result.withPic;
         resolve(exercise);
       } else {
         return reject(404);
@@ -134,13 +144,18 @@ exports.checkAnswer = function (database, answer, subject) {
     });
   })
     .then((type) => {
-      getProt(subject, subjectsData, type)
-        .then((prot) => {
-          resolve(prot);
-        })
-        .catch((error) => {
-          return reject(error);
+      return new Promise(function (resolve, reject) {
+        subjectsData.findOne({ name: subject }, (err, result) => {
+          if (err) {
+            return reject(500);
+          }
+          if (result) {
+            resolve(result.exercises.find((el) => el.type == type));
+          } else {
+            return reject(400);
+          }
         });
+      });
     })
     .then((prot) => {
       return new Promise((resolve, reject) => {
@@ -253,22 +268,6 @@ function getRandId(idArray, usedArray) {
 }
 module.exports.getRandId = getRandId;
 
-function getProt(subject, subjectsData, type) {
-  return new Promise(function (resolve, reject) {
-    subjectsData.findOne({ name: subject }, (err, result) => {
-      if (err) {
-        return reject(500);
-      }
-      if (result) {
-        resolve(result.exercises.find((el) => el.type == type));
-      } else {
-        return reject(400);
-      }
-    });
-  });
-}
-module.exports.getProt = getProt;
-
 function addExercise(exerciseObj, exercisesCollection, subject, subjectsData) {
   return new Promise(async (resolve, reject) => {
     let exerciseToAdd = {
@@ -277,6 +276,7 @@ function addExercise(exerciseObj, exercisesCollection, subject, subjectsData) {
       text: exerciseObj.text.toString(),
       addText: exerciseObj.addText.toString(),
       answers: [],
+      withPic: exerciseObj.withPic,
     };
     let prot;
     await exercisesCollection.countDocuments({}, (error, count) => {
@@ -285,28 +285,37 @@ function addExercise(exerciseObj, exercisesCollection, subject, subjectsData) {
       }
       exerciseToAdd._id = count + 1;
     });
-    await getProt(subject, subjectsData, exerciseObj.type)
-      .then((resolve) => {
-        prot = resolve;
-      })
-      .catch((error) => {
-        return reject(error);
-      });
-    answersArray = exerciseObj.answer
-      .toLowerCase()
-      .replace(/,/g, ".")
-      .split("|");
-    for (var i = 0; i < answersArray.length; i++) {
-      exerciseToAdd.answers[i] = answersArray[i];
-      if (!prot.spaceImportant) {
-        exerciseToAdd.answers[i] = exerciseToAdd.answers[i].replace(/\s+/g, "");
+    await subjectsData.findOne({ name: subject }, async (err, result) => {
+      if (err) {
+        return reject(500);
       }
-    }
-    exercisesCollection.insertOne(exerciseToAdd, (error, result) => {
-      if (error) {
-        return reject(error);
+      if (result) {
+        prot = result.exercises.find((el) => el.type == exerciseObj.type);
+        if (!prot) {
+          return reject(404);
+        }
+        let answersArray = exerciseObj.answer
+          .toLowerCase()
+          .replace(/,/g, ".")
+          .split("|");
+        for (var i = 0; i < answersArray.length; i++) {
+          exerciseToAdd.answers[i] = answersArray[i];
+          if (!prot.spaceImportant) {
+            exerciseToAdd.answers[i] = exerciseToAdd.answers[i].replace(
+              /\s+/g,
+              ""
+            );
+          }
+        }
+        exercisesCollection.insertOne(exerciseToAdd, (error, result) => {
+          if (error) {
+            return reject(error);
+          } else {
+            resolve(exerciseToAdd._id);
+          }
+        });
       } else {
-        resolve(exerciseToAdd._id);
+        return reject(400);
       }
     });
   });

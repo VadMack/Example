@@ -3,15 +3,14 @@ const bodyParser = require("body-parser");
 const mongodb = require("mongodb").MongoClient;
 const cors = require("cors");
 
-const corsOptions = require("./config/server-config/cors.js");
 const db = require("./config/server-config/db.js");
 const server = express();
-const port = process.env.PORT || 8000;
+const port = 8000;
 const dbUrl = "mongodb://" + db.login + ":" + db.password + db.url;
 
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(bodyParser.json());
-server.use(cors(corsOptions));
+server.use(cors());
 
 function startRouting(database) {
   require("./routes/routes.js")(server, database);
