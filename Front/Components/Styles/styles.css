@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Oswald&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Exo+2&display=swap&subset=cyrillic");
 
 
 .button-style {
@@ -23,14 +24,35 @@
     width: 40px;
     height: 40px;
     background-color: #ffff00;
+}
 
-
+.button-style4 {
+    color: #ffff00;
+    border-radius: 2px;
+    /*margin-top: 10px;*/
+    margin: 2px;
 }
 
 .font-oswald {
     font-family: 'Oswald', sans-serif;
 }
 
-.carousel-style{
+.exo2 {
+    font-family: 'Exo 2', sans-serif;
+}
+
+.carousel-style {
     height: 100%;
+}
+
+.main-block{
+    min-height: 100vh;
+    float: left;
+    background-color: #ffff00;
+}
+
+.add-block{
+    min-height: 100vh;
+    float: left;
+    background-color: #474747;
 }
