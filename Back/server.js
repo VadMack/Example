@@ -1,47 +1,44 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const mongodb = require('mongodb').MongoClient;
-const cors = require('cors');
+const express = require("express");
+const bodyParser = require("body-parser");
+const mongodb = require("mongodb").MongoClient;
+const cors = require("cors");
 
+const db = require("./config/server-config/db.js");
 const server = express();
-const mongoClient = new mongodb("mongodb://localhost:27017/", { useNewUrlParser: true });
+const port = 8000;
+const dbUrl = "mongodb://" + db.login + ":" + db.password + db.url;
+
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(bodyParser.json());
+server.use(cors());
 
-
-let db;
-let collection;
-
-let corsOptions = {
-	origin:"*",
-	optionsSuccessStatus: 200
+function startRouting(database) {
+  require("./routes/routes.js")(server, database);
 }
 
-server.use(cors(corsOptions));
+function BDConnect() {
+  mongodb.connect(
+    dbUrl,
+    {
+      useUnifiedTopology: true,
+      useNewUrlParser: true,
+    },
+    function (err, client) {
+      if (err) {
+        setTimeout(() => {
+          console.log("BD connecting error");
+          BDConnect();
+          return;
+        }, 3000);
+      }
+      console.log("DB connected");
+      const database = client.db(db.dbName);
+      startRouting(database);
+    }
+  );
+}
 
-mongoClient.connect(function(err, client){
-  if(err){
-    console.log(err);
-  }
-  db = client.db("exercises");
-  collection = db.collection("inf");
-
+BDConnect();
+server.listen(port, () => {
+  console.log("Listening on " + port);
 });
-
-
-server.get("/exercise/inf", function(req, res){
-	const id = parseInt(req.query.id);
-	let count = collection.countDocuments();
-	console.log(count);
-	collection.findOne({'_id': id}, (err, item)=>{
-		if(err){
-			res.send("ERROR");
-		}else{
-			res.send({"count": count});
-			console.log(req.body);
-		}
-	});
-	console.log("A");
-});
-
-server.listen(8000);
