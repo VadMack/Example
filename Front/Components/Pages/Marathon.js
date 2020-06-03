@@ -80,6 +80,8 @@ class Marathon extends React.Component {
                     <Task id={this.state.task.id}
                           text={this.state.task.text}
                           addText={this.state.task.addText}
+                          withPic={this.state.task.withPic}
+                          sbj={sbj}
                           updateData={this.updateData}
                           isRight={isRight}
                           userAnswer={userAnswer}
