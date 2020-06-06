@@ -4,7 +4,6 @@ import Table from "react-bootstrap/Table";
 
 class resultElement extends React.Component {
     render() {
-
         let screenWidth = window.innerWidth;
         let cardWidth;
         if (screenWidth > 500)
@@ -17,11 +16,14 @@ class resultElement extends React.Component {
         if (this.props.results) {
             for (let i = 0; i < this.props.results.length; i++) {
                 if (this.props.results[i]) {
-                    resTable[i] = <tr>
-                        <th>{this.props.results[i].numInVar}</th>
-                        <th>{this.props.results[i].points}</th>
-                        <th style={{maxWidth:"8rem", wordWrap:"break-word"}}>{this.props.results[i].userAnswer}</th>
-                        <th style={{maxWidth:"8rem", wordWrap:"break-word"}}>{this.props.results[i].correctAnswer}</th>
+                    resTable[i] = <tr key={this.props.results[i].numInVar}>
+                        <td>{this.props.results[i].numInVar}</td>
+                        <td>{this.props.results[i].points}</td>
+                        <td style={{maxWidth: "8rem", wordWrap: "break-word"}}>{this.props.results[i].userAnswer}</td>
+                        <td style={{
+                            maxWidth: "8rem",
+                            wordWrap: "break-word"
+                        }}>{this.props.results[i].correctAnswer}</td>
                     </tr>
                 }
             }
@@ -33,21 +35,23 @@ class resultElement extends React.Component {
                 <Card.Body>
                     <Table striped bordered hover size="sm">
                         <thead>
+                        <tr>
                             <th>#</th>
                             <th>Баллов</th>
                             <th>Ваш ответ</th>
                             <th>Верный ответ</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            {resTable}
-                            <tr>
-                                <th colSpan="3">Набрано первичных баллов</th>
-                                <th>{this.props.totalPoints}</th>
-                            </tr>
-                            <tr>
-                                <th colSpan="3">Набрано вторичных баллов</th>
-                                <th>{this.props.testResult}</th>
-                            </tr>
+                        {resTable}
+                        <tr>
+                            <th colSpan="3">Набрано первичных баллов</th>
+                            <td>{this.props.totalPoints}</td>
+                        </tr>
+                        <tr>
+                            <th colSpan="3">Набрано вторичных баллов</th>
+                            <td>{this.props.testResult}</td>
+                        </tr>
                         </tbody>
                     </Table>
                 </Card.Body>
