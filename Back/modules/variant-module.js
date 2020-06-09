@@ -60,6 +60,7 @@ exports.checkVariant = function (database, req) {
       await exerciseModule
         .checkAnswer(database, req.body[i], req.params.subject)
         .then((result) => {
+          result.numInVar = i+1;
           response.results[i] = result;
           response.totalPoints += result.points;
           response.maxPoints += result.maxPoints;

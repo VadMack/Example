@@ -32,7 +32,7 @@ class Hat extends Component {
                                 <img
                                     alt=""
                                     src = {logoImage}
-                                    style={{height:'20vh', wight:'15vw', marginTop:'1vh'}}
+                                    style={{height:'5vh', wight:'15vw', marginTop:'1vh'}}
                                 />
                             </Navbar.Brand>
                         </Nav>
