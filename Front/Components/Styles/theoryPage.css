@@ -1,0 +1,138 @@
+.arrowToLeft {
+    width: 10%;
+    height: 100vh;
+    line-height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 0;
+    text-align: center;
+    font-size: 10vw;
+}
+
+.arrowToRight {
+    width: 10%;
+    height: 100vh;
+    line-height: 100vh;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 0;
+    text-align: center;
+    font-size: 10vw;
+}
+
+.theory {
+    height: auto;
+    display: inline-block;
+    float: left;
+    position: absolute;
+    left: 16%;
+    right: 16%;
+    z-index: 0;
+}
+
+.mainBlock {
+    position: absolute;
+    display: inline-block;
+    width: 100%;
+}
+.material
+{
+    width: 90%;
+}
+
+#linkLeft:link {
+    text-decoration: none;
+    color: #343a40;
+}
+#linkLeft:visited {
+    text-decoration: none;
+    color: #343a40;
+}
+#linkLeft:active {
+    text-decoration: none;
+    color: #343a40;
+}
+#linkLeft:hover {
+    text-decoration: none;
+    color: #343a40;
+    text-shadow: 4px 4px yellow;
+}
+
+#linkRight:link {
+    text-decoration: none;
+    color: #343a40;
+}
+#linkRight:visited {
+    text-decoration: none;
+    color: #343a40;
+}
+#linkRight:active {
+    text-decoration: none;
+    color: #343a40;
+}
+#linkRight:hover {
+    text-decoration: none;
+    color: #343a40;
+    text-shadow: -4px 4px yellow;
+}
+#linkToTrainPage:link {
+    text-decoration: none;
+    color: #343a40;
+}
+#linkToTrainPage:visited {
+    text-decoration: none;
+    color: #343a40;
+}
+#linkToTrainPage:active {
+    text-decoration: none;
+    color: #343a40;
+}
+#linkToTrainPage:hover {
+    text-decoration: none;
+    color: #343a40;
+    text-shadow: 0px 1px yellow;
+}
+
+table {
+    border-collapse: collapse;
+    border: 1px solid black;
+    width: 90%;
+    margin-top: -10px;
+    margin-bottom: 20px;
+    table-layout: fixed;
+    word-wrap: break-word;
+}
+
+th {
+    border: 1px solid black;
+}
+
+td {
+    border: 1px solid black;
+    word-wrap: break-word;
+    padding-left: 5px;
+}
+
+ol {
+    width: auto;
+    padding-right: 34px;
+}
+
+@media all and (min-width: 1600px)
+{
+    .theory {
+        left: 0;
+        right: 0;
+        width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+@media all and (max-width: 500px)
+{
+    h1 {
+        font-size: 28px;
+    }
+}
