@@ -80,158 +80,157 @@ function App() {
                 <Route path="/marathon/:sbj/:prototype" component = {Marathon}/>
                 <Route path="/fill-db/:sbj" component = {FillingDatabase}/>
 
-                <Route path = {"/rustheory1"}>
-                    <RussianTheory1/>
-                </Route>
-                <Route path = {"/rustheory2"}>
-                    <RussianTheory2/>
-                </Route>
-                <Route path = {"/rustheory3"}>
-                    <RussianTheory3/>
-                </Route>
-                <Route path = {"/rustheory4"}>
-                    <RussianTheory4/>
-                </Route>
-                <Route path = {"/rustheory5"}>
-                    <RussianTheory5/>
-                </Route>
-                <Route path = {"/rustheory6"}>
-                    <RussianTheory6/>
-                </Route>
-                <Route path = {"/rustheory7"}>
-                    <RussianTheory7/>
-                </Route>
-                <Route path = {"/rustheory8"}>
-                    <RussianTheory8/>
-                </Route>
-                <Route path = {"/rustheory9"}>
-                    <RussianTheory9/>
-                </Route>
-                <Route path = {"/rustheory10"}>
-                    <RussianTheory10/>
-                </Route>
-                <Route path = {"/rustheory11"}>
-                    <RussianTheory11/>
-                </Route>
-                <Route path = {"/rustheory12"}>
-                    <RussianTheory12/>
-                </Route>
-                <Route path = {"/rustheory13"}>
-                    <RussianTheory13/>
-                </Route>
-                <Route path = {"/rustheory14"}>
-                    <RussianTheory14/>
-                </Route>
-                <Route path = {"/rustheory15"}>
-                    <RussianTheory15/>
-                </Route>
-                <Route path = {"/rustheory16"}>
-                    <RussianTheory16/>
-                </Route>
-                <Route path = {"/rustheory17"}>
-                    <RussianTheory17/>
-                </Route>
-                <Route path = {"/rustheory18"}>
-                    <RussianTheory18/>
-                </Route>
-                <Route path = {"/rustheory19"}>
-                    <RussianTheory19/>
-                </Route>
-                <Route path = {"/rustheory20"}>
-                    <RussianTheory20/>
-                </Route>
-                <Route path = {"/rustheory21"}>
-                    <RussianTheory21/>
-                </Route>
-                <Route path = {"/rustheory22"}>
-                    <RussianTheory22/>
-                </Route>
-                <Route path = {"/rustheory23"}>
-                    <RussianTheory23/>
-                </Route>
-                <Route path = {"/rustheory24"}>
-                    <RussianTheory24/>
-                </Route>
-                <Route path = {"/rustheory25"}>
-                    <RussianTheory25/>
-                </Route>
-                <Route path = {"/rustheory26"}>
-                    <RussianTheory26/>
-                </Route>
+            <Route path = {"/rustheory1"}>
+                <RussianTheory1/>
+            </Route>
+            <Route path = {"/rustheory2"}>
+                <RussianTheory2/>
+            </Route>
+            <Route path = {"/rustheory3"}>
+                <RussianTheory3/>
+            </Route>
+            <Route path = {"/rustheory4"}>
+                <RussianTheory4/>
+            </Route>
+            <Route path = {"/rustheory5"}>
+                <RussianTheory5/>
+            </Route>
+            <Route path = {"/rustheory6"}>
+                <RussianTheory6/>
+            </Route>
+            <Route path = {"/rustheory7"}>
+                <RussianTheory7/>
+            </Route>
+            <Route path = {"/rustheory8"}>
+                <RussianTheory8/>
+            </Route>
+            <Route path = {"/rustheory9"}>
+                <RussianTheory9/>
+            </Route>
+            <Route path = {"/rustheory10"}>
+                <RussianTheory10/>
+            </Route>
+            <Route path = {"/rustheory11"}>
+                <RussianTheory11/>
+            </Route>
+            <Route path = {"/rustheory12"}>
+                <RussianTheory12/>
+            </Route>
+            <Route path = {"/rustheory13"}>
+                <RussianTheory13/>
+            </Route>
+            <Route path = {"/rustheory14"}>
+                <RussianTheory14/>
+            </Route>
+            <Route path = {"/rustheory15"}>
+                <RussianTheory15/>
+            </Route>
+            <Route path = {"/rustheory16"}>
+                <RussianTheory16/>
+            </Route>
+            <Route path = {"/rustheory17"}>
+                <RussianTheory17/>
+            </Route>
+            <Route path = {"/rustheory18"}>
+                <RussianTheory18/>
+            </Route>
+            <Route path = {"/rustheory19"}>
+                <RussianTheory19/>
+            </Route>
+            <Route path = {"/rustheory20"}>
+                <RussianTheory20/>
+            </Route>
+            <Route path = {"/rustheory21"}>
+                <RussianTheory21/>
+            </Route>
+            <Route path = {"/rustheory22"}>
+                <RussianTheory22/>
+            </Route>
+            <Route path = {"/rustheory23"}>
+                <RussianTheory23/>
+            </Route>
+            <Route path = {"/rustheory24"}>
+                <RussianTheory24/>
+            </Route>
+            <Route path = {"/rustheory25"}>
+                <RussianTheory25/>
+            </Route>
+            <Route path = {"/rustheory26"}>
+                <RussianTheory26/>
+            </Route>
 
-                <Route path = {"/inftheory1"}>
-                    <InformaticTheory1/>
-                </Route>
-                <Route path = {"/inftheory2"}>
-                    <InformaticTheory2/>
-                </Route>
-                <Route path = {"/inftheory3"}>
-                    <InformaticTheory3/>
-                </Route>
-                <Route path = {"/inftheory4"}>
-                    <InformaticTheory4/>
-                </Route>
-                <Route path = {"/inftheory5"}>
-                    <InformaticTheory5/>
-                </Route>
-                <Route path = {"/inftheory6"}>
-                    <InformaticTheory6/>
-                </Route>
-                <Route path = {"/inftheory7"}>
-                    <InformaticTheory7/>
-                </Route>
-                <Route path = {"/inftheory8"}>
-                    <InformaticTheory8/>
-                </Route>
-                <Route path = {"/inftheory9"}>
-                    <InformaticTheory9/>
-                </Route>
-                <Route path = {"/inftheory10"}>
-                    <InformaticTheory10/>
-                </Route>
-                <Route path = {"/inftheory11"}>
-                    <InformaticTheory11/>
-                </Route>
-                <Route path = {"/inftheory12"}>
-                    <InformaticTheory12/>
-                </Route>
-                <Route path = {"/inftheory13"}>
-                    <InformaticTheory13/>
-                </Route>
-                <Route path = {"/inftheory14"}>
-                    <InformaticTheory14/>
-                </Route>
-                <Route path = {"/inftheory15"}>
-                    <InformaticTheory15/>
-                </Route>
-                <Route path = {"/inftheory16"}>
-                    <InformaticTheory16/>
-                </Route>
-                <Route path = {"/inftheory17"}>
-                    <InformaticTheory17/>
-                </Route>
-                <Route path = {"/inftheory18"}>
-                    <InformaticTheory18/>
-                </Route>
-                <Route path = {"/inftheory19"}>
-                    <InformaticTheory19/>
-                </Route>
-                <Route path = {"/inftheory20"}>
-                    <InformaticTheory20/>
-                </Route>
-                <Route path = {"/inftheory21"}>
-                    <InformaticTheory21/>
-                </Route>
-                <Route path = {"/inftheory22"}>
-                    <InformaticTheory22/>
-                </Route>
-                <Route path = {"/inftheory23"}>
-                    <InformaticTheory23/>
-                </Route>
-                <Route path = {"/accentstraining"}>
-                    <AccentsTraining/>
-                </Route>
-
+            <Route path = {"/inftheory1"}>
+                <InformaticTheory1/>
+            </Route>
+            <Route path = {"/inftheory2"}>
+                <InformaticTheory2/>
+            </Route>
+            <Route path = {"/inftheory3"}>
+                <InformaticTheory3/>
+            </Route>
+            <Route path = {"/inftheory4"}>
+                <InformaticTheory4/>
+            </Route>
+            <Route path = {"/inftheory5"}>
+                <InformaticTheory5/>
+            </Route>
+            <Route path = {"/inftheory6"}>
+                <InformaticTheory6/>
+            </Route>
+            <Route path = {"/inftheory7"}>
+                <InformaticTheory7/>
+            </Route>
+            <Route path = {"/inftheory8"}>
+                <InformaticTheory8/>
+            </Route>
+            <Route path = {"/inftheory9"}>
+                <InformaticTheory9/>
+            </Route>
+            <Route path = {"/inftheory10"}>
+                <InformaticTheory10/>
+            </Route>
+            <Route path = {"/inftheory11"}>
+                <InformaticTheory11/>
+            </Route>
+            <Route path = {"/inftheory12"}>
+                <InformaticTheory12/>
+            </Route>
+            <Route path = {"/inftheory13"}>
+                <InformaticTheory13/>
+            </Route>
+            <Route path = {"/inftheory14"}>
+                <InformaticTheory14/>
+            </Route>
+            <Route path = {"/inftheory15"}>
+                <InformaticTheory15/>
+            </Route>
+            <Route path = {"/inftheory16"}>
+                <InformaticTheory16/>
+            </Route>
+            <Route path = {"/inftheory17"}>
+                <InformaticTheory17/>
+            </Route>
+            <Route path = {"/inftheory18"}>
+                <InformaticTheory18/>
+            </Route>
+            <Route path = {"/inftheory19"}>
+                <InformaticTheory19/>
+            </Route>
+            <Route path = {"/inftheory20"}>
+                <InformaticTheory20/>
+            </Route>
+            <Route path = {"/inftheory21"}>
+                <InformaticTheory21/>
+            </Route>
+            <Route path = {"/inftheory22"}>
+                <InformaticTheory22/>
+            </Route>
+            <Route path = {"/inftheory23"}>
+                <InformaticTheory23/>
+            </Route>
+            <Route path = {"/accentstraining"}>
+                <AccentsTraining/>
+            </Route>
             </Switch>
         </Router>
 
