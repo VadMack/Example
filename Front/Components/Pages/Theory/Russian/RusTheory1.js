@@ -1,13 +1,13 @@
 import React, {Component} from "react";
 import "../../../Styles/theoryPage.css"
 
-class RussianTheory extends Component {
+class RussianTheory1 extends Component {
     render() {
         return (
             <div className = "mainBlock">
 
                 <div className = "arrowToLeft" width = "50px">
-                    <a id = "linkLeft" href = "Menu" title={"Теория к предыдущему заданию"} className = "linkToTheory"><b>&#171;</b></a>
+                    <a id = "linkLeft" href = "rustheory27" title={"Теория к предыдущему заданию"} className = "linkToTheory"><b>&#171;</b></a>
                 </div>
 
                 <span  className="theory">
@@ -38,4 +38,4 @@ class RussianTheory extends Component {
     }
 }
 
-export default RussianTheory
+export default RussianTheory1

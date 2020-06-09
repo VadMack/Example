@@ -7,7 +7,7 @@ class RussianTheory extends Component {
             <div className = "mainBlock">
 
                 <div className = "arrowToLeft" width = "50px">
-                    <a id = "linkLeft" href = "inftheory21" title={"Теория к предыдущему заданию"} className = "linkToTheory"><b>&#171;</b></a>
+                    <a id = "linkLeft" href = "inftheory20" title={"Теория к предыдущему заданию"} className = "linkToTheory"><b>&#171;</b></a>
                 </div>
 
                 <span  className="theory">
