@@ -71,7 +71,12 @@ class ButtonBar extends React.Component {
             url = "/variants/" + this.props.subject + "/";
         }
         else {
-            url = "/marathon/" + this.props.subject + "/";
+            if (!this.props.isTheory) {
+                url = "/marathon/" + this.props.subject + "/";
+            }
+            else {
+                url = "/" + this.props.subject + "theory";
+            }
         }
 
         for (let i = 0; i < numOfButtons; i++) {

@@ -79,9 +79,7 @@ function App() {
                     <MainPage/>
                 </Route>
                 <Route path={"/Menu/:sbj"} component={SubjectBar}/>
-                <Route path={"/allVariants"}>
-                    <AllVariants/>
-                </Route>
+                <Route path={"/allVariants/:sbj"} component={AllVariants}/>
                 <Route path="/variants/:sbj/:id" component = {Variant}/>
                 <Route path="/marathon/:sbj/:prototype" component = {Marathon}/>
                 <Route path="/fill-db/:sbj" component = {FillingDatabase}/>

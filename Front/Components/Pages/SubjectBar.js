@@ -1,12 +1,21 @@
 import React, {Component} from "react";
 import ButtonBar from "../Elements/ButtonBar"
-
+import {Button} from "react-bootstrap";
 
 
 class SubjectBar extends Component {
 
     render() {
         let sbj = this.props.match.params.sbj;
+
+        let accentButton;
+        if (sbj === "rus") {
+            accentButton = <Button variant="dark" className="font-oswald" href="/accentstraining" style={{
+                backgroundColor: "#ffff00",
+                color: "#474747",
+                borderRadius: "2px"
+            }}> Тренировка ударений </Button>
+        }
         return (
 
             <div align="center" className="font-oswald" style={{backgroundColor: "#ffff00", minHeight: "100vh"}}>
@@ -15,7 +24,7 @@ class SubjectBar extends Component {
                         Список вариантов
                     </div>
                     <ButtonBar subject={sbj} type="variant" isLimited={true}/>
-                    <a href={"/allVariants"} style={{color: "black", fontSize: "15px"}}>
+                    <a href={"/allVariants/" + sbj} style={{color: "black", fontSize: "15px"}}>
                         Перейти к полному списку вариантов
                     </a>
                 </div>
@@ -28,10 +37,12 @@ class SubjectBar extends Component {
                     </div>
                     <ButtonBar subject={sbj} type="exercises" isLimited={false}/>
                 </div>
-                <div style={{fontSize: "30px", height: "31vh"}}>
-                    <a href={"/"} style={{color: "black"}}>
+                <div style={{fontSize: "30px", minHeight: "31vh"}}>
+                    <div style={{color: "black"}}>
                         Теоретические материалы
-                    </a>
+                    </div>
+                    <ButtonBar subject={sbj} type="exercises" isTheory={true} isLimited={false}/>
+                    {accentButton}
                 </div>
 
             </div>

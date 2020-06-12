@@ -24,7 +24,7 @@ class AllVariants extends Component {
                     <div>
                         Полный список вариантов:
                     </div>
-                    <ButtonBar subject="rus" type="variant" isLimited="0"/>
+                    <ButtonBar subject={this.props.match.params.sbj} type="variant" isLimited="0"/>
                 </div>
                 <div className="add-block" style={{width: addBarWidth}}>
                 </div>
